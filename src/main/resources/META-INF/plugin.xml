@@ -1,0 +1,29 @@
+<idea-plugin>
+
+    <id>tel.panfilov.intellij.plugin.mvntermenv</id>
+
+    <name>MvnTermEnv</name>
+
+    <vendor email="andrew@panfilov.tel" url="https://github.com/andreybpanfilov/mvntermenv">Andrey B. Panfilov</vendor>
+
+    <description><![CDATA[
+    Sets maven-related environment variables JAVA_HOME, MAVEN_HOME, MAVEN_OPTS and PATH prior launching terminal window
+  ]]></description>
+
+    <change-notes><![CDATA[
+
+    ]]>
+    </change-notes>
+
+    <idea-version since-build="213.0"/>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+    <depends>org.jetbrains.idea.maven</depends>
+    <depends>org.jetbrains.idea.maven.model</depends>
+
+    <extensions defaultExtensionNs="org.jetbrains.plugins.terminal">
+        <localTerminalCustomizer implementation="tel.panfilov.intellij.plugin.mvntermenv.MavenLocalTerminalCustomizer"/>
+    </extensions>
+
+</idea-plugin>
