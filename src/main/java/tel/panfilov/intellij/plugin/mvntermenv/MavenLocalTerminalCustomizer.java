@@ -11,7 +11,7 @@ import org.jetbrains.idea.maven.model.MavenExplicitProfiles;
 import org.jetbrains.idea.maven.project.MavenGeneralSettings;
 import org.jetbrains.idea.maven.project.MavenProject;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
-import org.jetbrains.idea.maven.utils.MavenWslUtil;
+import org.jetbrains.idea.maven.utils.MavenUtil;
 import org.jetbrains.plugins.terminal.LocalTerminalCustomizer;
 
 import java.io.File;
@@ -80,7 +80,14 @@ public class MavenLocalTerminalCustomizer extends LocalTerminalCustomizer {
 
     protected void setMavenHomeAndPath(@NotNull Map<String, String> envs, @NotNull Project project, @NotNull MavenProjectsManager projectsManager) {
         MavenGeneralSettings generalSettings = projectsManager.getGeneralSettings();
-        File mavenHome = MavenWslUtil.resolveMavenHome(project, generalSettings.getMavenHome());
+        if (MavenUtil.isWrapper(generalSettings)) {
+            return;
+        }
+        String settingsHome = generalSettings.getMavenHome();
+        File mavenHome = MavenUtil.resolveMavenHomeDirectory(settingsHome);
+        if (mavenHome == null || !mavenHome.isDirectory()) {
+            mavenHome = MavenUtil.resolveMavenHomeDirectory(null);
+        }
         if (mavenHome == null || !mavenHome.isDirectory()) {
             return;
         }
