@@ -15,12 +15,11 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="213.0"/>
+    <idea-version since-build="233.0"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.plugins.terminal</depends>
     <depends>org.jetbrains.idea.maven</depends>
-    <depends>org.jetbrains.idea.maven.model</depends>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.terminal">
         <localTerminalCustomizer implementation="tel.panfilov.intellij.plugin.mvntermenv.MavenLocalTerminalCustomizer"/>

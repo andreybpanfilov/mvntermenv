@@ -15,6 +15,7 @@ import org.jetbrains.idea.maven.utils.MavenUtil;
 import org.jetbrains.plugins.terminal.LocalTerminalCustomizer;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -112,8 +113,8 @@ public class MavenLocalTerminalCustomizer extends LocalTerminalCustomizer {
         if (overriddenLocalRepository.isBlank()) {
             return;
         }
-        File localRepository = projectsManager.getLocalRepository();
-        envs.put(MAVEN_OPTS, append("-Dmaven.repo.local=" + localRepository.getAbsolutePath(), MAVEN_OPTS, " ", envs));
+        Path localRepository = projectsManager.getRepositoryPath().toAbsolutePath();
+        envs.put(MAVEN_OPTS, append("-Dmaven.repo.local=" + localRepository, MAVEN_OPTS, " ", envs));
     }
 
     protected void setProfileOpts(MavenProjectsManager projectsManager, @NotNull Map<String, String> envs) {

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "tel.panfilov.intellij.plugin"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
   mavenCentral()
@@ -13,10 +13,10 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-  version.set("2021.3")
+  version.set("2025.2")
   type.set("IC") // Target IDE Platform
   updateSinceUntilBuild.set(false)
-  plugins.set(listOf("org.jetbrains.plugins.terminal", "org.jetbrains.idea.maven", "org.jetbrains.idea.maven.model"))
+  plugins.set(listOf("org.jetbrains.plugins.terminal", "org.jetbrains.idea.maven"))
 }
 
 tasks {
@@ -27,7 +27,7 @@ tasks {
   }
 
   patchPluginXml {
-    sinceBuild.set("213.0")
+    sinceBuild.set("233.0")
   }
 
   signPlugin {
